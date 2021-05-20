@@ -4,6 +4,7 @@
 #include "window.h"
 #include "point.h"
 #include "vector.h"
+#include "matrix.h"
 
 void math01(Display* d, Window& w, GC& g) {
     Margot::Point<double, 2> p1 = {200.f, 200.f};
@@ -21,10 +22,24 @@ void math01(Display* d, Window& w, GC& g) {
     }
 }
 
+void matrix(Display* d, Window& w, GC& g) {
+    Margot::Matrix<int, 3, 2> m = {
+        3, 1,
+        2, -1,
+        0, 4
+    };
+    Margot::Matrix<int, 2, 3> n = {
+        1, -1, 2,
+        3, 0, 5
+    };
+    std::cout << m * n << '\n';
+}
+
 int main(int argc, char** argv) {
-    Margot::MWindow win("Margot 3D Engine", 1024, 768);
+    Margot::MWindow win("Margot 2D/3D Engine", 1024, 768);
     win.render([&](Display* d, Window& w, GC& g){
         math01(d, w, g);
+        matrix(d, w, g);
     });
     win.show();
     return EXIT_SUCCESS;

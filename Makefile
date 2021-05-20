@@ -3,12 +3,12 @@ vpath %.h include
 TARGET = margot
 CPPFLAGS = -I/usr/include -I./include
 LDFLAGS = -lX11
-GCC = g++ -g
+GCC = g++ -g --std=c++2a
 
 all: $(TARGET)
 
 $(TARGET): main.o window.o 
-	$(GCC) --std=c++17 $^ -o $@ $(LDFLAGS)
+	$(GCC) $^ -o $@ $(LDFLAGS)
 
 %.o: %.cpp %.h
 	$(GCC) -c $< $(CPPFLAGS)

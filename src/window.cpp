@@ -3,6 +3,7 @@
 #include <X11/Xutil.h>
 #include <X11/Xos.h>
 
+
 Margot::MWindow::MWindow(const std::string& title,
     int width, int height): title(title),
     width(width), height(height) {
