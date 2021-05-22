@@ -41,6 +41,13 @@ public:
         }
         return r;
     }
+    Point operator-(const T& value) {
+        Point r(data);
+        for (std::size_t i = 0; i < S; ++i) {
+            r[i] -= value;
+        }
+        return r;
+    }
     Point operator*(const T& value) {
         Point r(data);
         for (std::size_t i = 0; i < S; ++i) {

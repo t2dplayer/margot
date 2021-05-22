@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <X11/Xutil.h>
 #include <X11/Xos.h>
-
+#include <X11/Xutil.h>
 
 Margot::MWindow::MWindow(const std::string& title,
     int width, int height): title(title),
@@ -21,6 +21,8 @@ Margot::MWindow::MWindow(const std::string& title,
     this->gc = XCreateGC(this->display, this->window, 0, 0);
     XMapWindow(this->display, this->window); 
     XStoreName(this->display, this->window, this->title.c_str());
+    XFontStruct* myFont = XLoadQueryFont(this->display, "lucidasanstypewriter-bold-14");
+    XSetFont(this->display, this->gc, myFont->fid);
 }
 
 Margot::MWindow::~MWindow() {

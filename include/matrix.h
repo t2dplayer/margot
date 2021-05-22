@@ -13,9 +13,9 @@ public:
     Matrix() {
         data.reserve(Rows);
         for (std::size_t i = 0; i < Rows * Cols; ++i) {
-            if (i / Cols == 0) {
+            if (i % Cols == 0) {
                 data.push_back({});
-                data[i].reserve(Cols);
+                data[i / Cols].reserve(Cols);
             }
             data[i / Cols].push_back(static_cast<T>(0));
         }
