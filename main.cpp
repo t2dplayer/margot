@@ -81,20 +81,22 @@ auto window_to_viewport(const Margot::Rect<T>& window,
     auto t2 = Margot::Transformations::translate<T, 3, 3>({umin, vmin});
     auto s = Margot::Transformations::scale<T, 3, 3>({sx, sy});
     auto t1 = Margot::Transformations::translate<T, 3, 3>({-xmin, -ymin});
+    /*
     std::cout << "t1\n" << t1 << '\n';
     std::cout << "s\n" << s << '\n';
     std::cout << "t2\n" << t2 << '\n';
+    */
     return t2 * s * t1;
 }
 
 void transformation(Display* d, Window& w, GC& g) {    
     Margot::Rect<double> world({0., 0.}, {1024., 768.});    
-    Margot::Rect<double> window({50., 0.}, 200, 200);
-    Margot::Rect<double> viewport({250., 250.}, 300, 400);
-    XDrawString(d, w, g, window.left() + 2, window.top() + 35, "window", 6);
+    Margot::Rect<double> window({25., 0.}, 200, 200);
+    Margot::Rect<double> viewport({25., 205.}, 200, 500);
+    XDrawString(d, w, g, window.left() + 2, window.top() + 18, "window", 6);
     XDrawString(d, w, g, viewport.left() + 2, viewport.top() + 18, "viewport", 8);     
     
-    XDrawRectangle(d, w, g, window.left(), window.top() + 18, window.width(), window.height());
+    XDrawRectangle(d, w, g, window.left(), window.top(), window.width(), window.height());
     XDrawRectangle(d, w, g, viewport.left(), viewport.top(), viewport.width(), viewport.height());
     auto N = window_to_viewport(window, viewport);
     std::cout << N << '\n';
