@@ -78,14 +78,9 @@ auto window_to_viewport(const Margot::Rect<T>& window,
     auto vmin = viewport.top();
     auto sx = viewport.width() / window.width();
     auto sy = viewport.height() / window.height();
-    auto t2 = Margot::Transformations::translate<T, 3, 3>({umin, vmin});
-    auto s = Margot::Transformations::scale<T, 3, 3>({sx, sy});
-    auto t1 = Margot::Transformations::translate<T, 3, 3>({-xmin, -ymin});
-    /*
-    std::cout << "t1\n" << t1 << '\n';
-    std::cout << "s\n" << s << '\n';
-    std::cout << "t2\n" << t2 << '\n';
-    */
+    auto t2 = Margot::Transformations::translate_matrix<T, 3, 3>({umin, vmin});
+    auto s = Margot::Transformations::scale_matrix<T, 3, 3>({sx, sy});
+    auto t1 = Margot::Transformations::translate_matrix<T, 3, 3>({-xmin, -ymin});
     return t2 * s * t1;
 }
 
