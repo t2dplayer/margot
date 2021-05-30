@@ -181,10 +181,11 @@ int main(int argc, char** argv) {
         example_window_to_viewport(d, w, g, window, viewport);
     });
     win.onKeyPressed([&](KeyCode key) {           
-        Matrix1x3 LT{window.getLeftTop()[0], window.getLeftTop()[1], 1.};
-        Matrix1x3 RT{window.getRightTop()[0], window.getRightTop()[1], 1.};
-        Matrix1x3 RB{window.getRightBottom()[0], window.getRightBottom()[1], 1.};
-        Matrix1x3 LB{window.getLeftBottom()[0], window.getLeftBottom()[1], 1.};
+        //Matrix1x3 LT{window.getLeftTop()[0], window.getLeftTop()[1], 1.};
+        Matrix1x3 LT = window.getLeftTop();
+        Matrix1x3 RT = window.getRightTop();
+        Matrix1x3 RB = window.getRightBottom();
+        Matrix1x3 LB = window.getLeftBottom();
         Matrix1x3 T = {0., 0., 1.};
         Matrix3x3 U = Margot::MatrixUtils::Identity<double, 3, 3>();
         if (rotatingKeys.find(key) != rotatingKeys.end()) {

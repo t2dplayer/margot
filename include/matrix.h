@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <type_traits>
+#include "point.h"
 
 namespace Margot {
 
@@ -20,6 +21,15 @@ public:
             data[i / Cols].push_back(static_cast<T>(0));
         }
     }
+    template <typename Type, std::size_t Dim = 2>
+    Matrix(const Margot::Point<Type, Dim>& p) {
+        data.push_back({});
+        data[0].reserve(Dim + 1);
+        for (std::size_t i = 0; i < Dim; ++i) {
+            data[0].push_back(p[i]);
+        }
+        data[0].push_back(static_cast<T>(1.));        
+    }    
     template <typename... U>
     Matrix(U... values) {
         static_assert(sizeof...(values) == Rows * Cols, "Invalid number of values");
