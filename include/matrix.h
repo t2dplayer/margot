@@ -34,7 +34,7 @@ public:
         }
     }
     template <typename Type, std::size_t R, std::size_t C>
-    Matrix<T, Rows, C> operator*(const Matrix<Type, R, C>& m) {
+    Matrix<T, Rows, C> operator*(const Matrix<Type, R, C>& m) const {
         Matrix<T, Rows, C> r;
         for (std::size_t i = 0; i < rows(); ++i) {
             for (std::size_t j = 0; j < m.cols(); ++j) {
@@ -44,6 +44,15 @@ public:
             }
         }
         return r;
+    }
+    auto operator/(const T& value) const {
+        Margot::Matrix<T, Rows, Cols> R(*this);
+        for (std::size_t i = 0; i < Rows; ++i) {
+            for (std::size_t j = 0; j < Cols; ++j) {
+                R[i][j] /= value;
+            }
+        }
+        return R;
     }
     auto operator[](std::size_t i) const {
         return data[i];
