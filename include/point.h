@@ -27,38 +27,10 @@ public:
         }
         return p;
     }
-    Point operator+(const Point& v) const {
-        Point p(data);
-        for (std::size_t i = 0; i < S; ++i) {
-            p.data[i] += v[i];
-        }
-        return p;
-    }
     Vector<T, S> operator-(const Point& p) {
         Vector<T, S> r;
         for (std::size_t i = 0; i < p.data.size(); ++i) {
             r[0] = data[i] - p[i];
-        }
-        return r;
-    }
-    Point operator-(const T& value) {
-        Point r(data);
-        for (std::size_t i = 0; i < S; ++i) {
-            r[i] -= value;
-        }
-        return r;
-    }
-    Point operator*(const T& value) {
-        Point r(data);
-        for (std::size_t i = 0; i < S; ++i) {
-            r[i] *= value;
-        }
-        return r;
-    }
-    friend Point operator*(const T& value, const Point& p) {
-        Point r(p.data);
-        for (std::size_t i = 0; i < S; ++i) {
-            r[i] *= value;
         }
         return r;
     }
